@@ -48,8 +48,8 @@ export function NewCustomerForm({ userId }: { userId: string }) {
       userId: userId,
     });
 
-    router.refresh();
     router.replace("/dashboard/customer");
+    router.refresh();
   }
 
   return (
