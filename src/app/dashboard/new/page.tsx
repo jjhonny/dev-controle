@@ -29,9 +29,17 @@ export default async function NewTicket() {
       return;
     }
 
-    console.log(name);
-    console.log(description);
-    console.log(customerId);
+    await prismaClient.ticket.create({
+      data: {
+        name: name as string,
+        description: description as string,
+        customerId: customerId as string,
+        status: "ABERTO",
+        userId: session?.user.id,
+      },
+    });
+
+    redirect("/dashboard");
   }
 
   return (
