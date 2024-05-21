@@ -3,7 +3,7 @@ import { useContext, useRef, MouseEvent } from "react";
 import { ModalContext } from "@/providers/modal";
 
 export function ModalTicket() {
-  const { handleModalVisible } = useContext(ModalContext);
+  const { handleModalVisible, ticket } = useContext(ModalContext);
   const modalRef = useRef<HTMLDivElement | null>(null);
 
   const handleModalClick = (e: MouseEvent<HTMLDivElement>) => {
@@ -35,30 +35,32 @@ export function ModalTicket() {
           </div>
           <div className="flex flex-wrap gap-1 mb-2">
             <h2 className="font-bold">Nome:</h2>
-            <p>Problema no pc</p>
+            <p>{ticket?.ticket.name}</p>
           </div>
           <div className="flex flex-wrap flex-col gap-1 mb-2">
             <h2 className="font-bold">Descrição:</h2>
-            <p>Descrição do problema aqui!!!</p>
+            <p>{ticket?.ticket.description}</p>
           </div>
           <div className="w-full border-b-[2px] my-4"></div>
           <h1 className="text-lg font-bold mb-2">Destalhes do cliente</h1>
           <div className="flex flex-wrap gap-1 mb-2">
             <h2 className="font-bold">Nome:</h2>
-            <p>Mercado</p>
+            <p>{ticket?.customer?.name}</p>
           </div>
           <div className="flex flex-wrap gap-1 mb-2">
             <h2 className="font-bold">Telefone:</h2>
-            <p>6799999999</p>
+            <p>{ticket?.customer?.phone}</p>
           </div>
           <div className="flex flex-wrap gap-1 mb-2">
             <h2 className="font-bold">Email:</h2>
-            <p>teste@teste.com</p>
+            <p>{ticket?.customer?.email}</p>
           </div>
-          <div className="flex flex-wrap gap-1 mb-2">
-            <h2 className="font-bold">Endereço:</h2>
-            <p>Rua teste</p>
-          </div>
+          {ticket?.customer?.address && (
+            <div className="flex flex-wrap gap-1 mb-2">
+              <h2 className="font-bold">Endereço:</h2>
+              <p>{ticket?.customer?.address}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
